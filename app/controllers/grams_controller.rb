@@ -17,6 +17,13 @@ before_action :authenticate_user!, only: [:new, :create]
     end
   end
 
+  def show
+    @gram = Gram.find_by_id(params[:id])
+    if @gram.nil?
+      render plain: 'Not Found :(', status: :not_found
+    end
+  end
+
   private
 
   def gram_params
